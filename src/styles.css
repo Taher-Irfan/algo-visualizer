@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {  background-color: whitesmoke;margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
+.my-nav{
+  background-color: #056c90;
+  color: white;
+  height: 20%;
+  margin-bottom: 0.5%;
+}

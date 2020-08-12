@@ -1,0 +1,42 @@
+.my-nav{
+  background-color: #056c90;
+  color: white;
+  height: 20%;
+  margin-bottom: 0.5%;
+}
+.mcl{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 80%;
+  margin-top: 10%;
+}
+
+.example-full-width {
+  width: 80%;
+}
+button{
+  border-radius: 0px;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
+  background-color: blueviolet;
+}
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

@@ -1,0 +1,122 @@
+<!--<div class = "my-nav">-->
+<!--  <button mat-flat-button color="primary" (click)="start()" >Start</button>-->
+<!--  <button mat-flat-button color="warn" (click)="reset(start_row,start_col,end_row,end_col)" >Reset</button>-->
+<!--  <mat-slide-toggle (change)="block_cell()" >Add block cell</mat-slide-toggle>-->
+<!--  <mat-slide-toggle (change)="eight_cell_connection()" >8 Cell connection</mat-slide-toggle>-->
+<!--  <mat-slide-toggle (change)="dijkastra_statue_change()" >Dijkastra</mat-slide-toggle>-->
+<!--  <br>-->
+<!--  <mat-slider min="0" max="250" step="10" value="1" (change)="change_time($event) "></mat-slider>{{timer}}ms-->
+<!--  <mat-slider min="20" max="50" step="5" value="1" (change)="change_grid($event) "></mat-slider>{{this.cols}}columns-->
+<!--</div>-->
+<!--<div class="box a">-->
+<!--  <mat-grid-list cols="{{cols}}" rowHeight="1:1" style="color: white; height: 70%; width: 70%">-->
+<!--    <div *ngFor="let i of row_arr">-->
+<!--      <mat-grid-tile *ngFor="let j of col_arr" (click)="res(i,j)" (dragenter)="click(i, j)" class="{{matrix[i][j]}}">-->
+<!--      <span *ngIf="i===start_row && j === start_col" (dragstart)="change_start_status()" style="cursor: grab"-->
+<!--            class="material-icons">arrow_forward_ios</span>-->
+<!--        <span *ngIf="i===end_row && j === end_col" (dragstart)="change_end_status()" style="cursor: grab"-->
+<!--              class="material-icons">adjust</span>-->
+<!--        <span *ngIf="visited[i][j]==true&&(i!=start_row||j!=start_col)&&(i!=end_row||j!=end_col)">{{level[i][j]}}</span>-->
+<!--        <span style="color: black"-->
+<!--              *ngIf="(i!=start_row||j!=start_col)&&(i!=end_row||j!=end_col) &&(dijkastra_statue == true) && dijkastra_node_value.length">{{dijkastra_node_value[i][j]}}-->
+<!--          |<span *ngIf="dijkastra_till_dist[i][j]!=1000009">{{dijkastra_till_dist[i][j]}}</span></span>-->
+<!--      </mat-grid-tile>-->
+
+<!--    </div>-->
+<!--  </mat-grid-list>-->
+<!--</div>-->
+
+<!--  <mat-grid-tile style="color: white; height: 30%; width: 30%">-->
+<!--    <button mat-flat-button color="primary" (click)="start()">Start</button>-->
+<!--    <button mat-flat-button color="warn" (click)="reset(start_row,start_col,end_row,end_col)">Reset</button>-->
+<!--    <mat-slide-toggle (change)="block_cell()">Add block cell</mat-slide-toggle>-->
+<!--    <mat-slide-toggle (change)="eight_cell_connection()">8 Cell connection</mat-slide-toggle>-->
+<!--    <mat-slide-toggle (change)="dijkastra_statue_change()">Dijkastra</mat-slide-toggle>-->
+<!--    <br>-->
+<!--    <mat-slider min="0" max="250" step="10" value="1" (change)="change_time($event) "></mat-slider>-->
+<!--    {{timer}}ms-->
+<!--    <mat-slider min="20" max="50" step="5" value="1" (change)="change_grid($event) "></mat-slider>-->
+<!--    {{this.cols}}columns-->
+<!--  </mat-grid-tile>-->
+
+
+<mat-grid-list cols="4" rowHeight="1:2.8">
+  <mat-grid-tile colspan="3" >
+    <div class='internalMatGrid' >
+      <mat-grid-list cols="{{cols}}" rowHeight="1:1" style="color: white; height: 100%; width: 100%">
+        <div *ngFor="let i of row_arr">
+          <mat-grid-tile *ngFor="let j of col_arr" (click)="res(i,j)" (dragenter)="click(i, j)"
+                         class="{{matrix[i][j]}}">
+      <span *ngIf="i===start_row && j === start_col" (dragstart)="change_start_status()" style="cursor: grab"
+            class="material-icons">arrow_forward_ios</span>
+            <span *ngIf="i===end_row && j === end_col" (dragstart)="change_end_status()" style="cursor: grab"
+                  class="material-icons">adjust</span>
+            <span
+              *ngIf="visited[i][j]==true&&(i!=start_row||j!=start_col)&&(i!=end_row||j!=end_col)">{{level[i][j]}}</span>
+
+            <span [ngStyle]="{'color': matrix[i][j]=='path'? 'white': 'black'}"
+                  *ngIf="(i!=start_row||j!=start_col)&&(i!=end_row||j!=end_col) &&(dijkastra_statue == true) && dijkastra_node_value.length">{{dijkastra_node_value[i][j]}}
+              |<span style="color: white; text-shadow: 0.8px 0.8px cyan" *ngIf="dijkastra_till_dist[i][j]!=1000009">{{dijkastra_till_dist[i][j]}}</span></span>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" style="display: list-item; text-shadow: 0.5px 0.5px cyan" >
+    <div class="mcl">
+
+
+
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Select Grid Type</mat-label>
+        <mat-select [disabled]="running===true" [(value)]="eight_cell_connection_status">
+          <mat-option [value]="false">4 Connected Grid</mat-option>
+          <mat-option [value]="true">8 Connected Grid</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select Algorithm</mat-label>
+        <mat-select [disabled]="running===true" [(value)]="dijkastra_statue">
+          <mat-option [value]="false">BFS</mat-option>
+          <mat-option [value]="true" (onSelectionChange)="dijkastra_statue_change()">Dijkstra</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      Add Block Cell :
+      <mat-slide-toggle [checked]="add_block_cell" [disabled]="running==true" (change)="block_cell()"></mat-slide-toggle>
+      <br>
+      <br>
+      Speed:
+      <br>
+      slow
+      <mat-slider min="-250" max="0" step="10" value="1" (change)="change_time($event) "></mat-slider>
+      fast
+      <br>
+      Grid Size :
+      <mat-slider [disabled]="running==true" min="15" max="30" step="1" value="1" (change)="change_grid($event) "></mat-slider>
+      {{this.cols}}
+      <br>
+      <br>
+      <button [disabled]="running==true" mat-flat-button color="primary" (click)="start()">Start</button>
+      <button mat-flat-button color="warn" (click)="stop()">Stop</button>
+      <button [disabled]="running==true" mat-flat-button color="primary" (click)="reset(start_row,start_col,end_row,end_col)">Reset</button>
+
+      <br>
+
+    </div>
+
+
+
+
+
+
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+
+

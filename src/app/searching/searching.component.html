@@ -1,0 +1,50 @@
+<mat-grid-list cols="4" rowHeight="1:2">
+  <mat-grid-tile colspan="3">
+    <div class='internalMatGrid'>
+      <mat-grid-list cols="20" rowHeight="1:1" style="color: white; height: 100%; width: 100%">
+        <div *ngFor="let i of this.index ">
+          <mat-grid-tile style="background-color: {{background_array[i]}}">
+            <span style="color: white; font-size: 25px; text-shadow: 0.5px 0.5px cyan">{{num_array[i]}}</span>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" style="display: list-item; text-shadow: 0.5px 0.5px cyan">
+    <div class="mcl" >
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input [disabled]="running===true" [(ngModel)]='searching_number' matInput type="number"
+                 placeholder="Enter Searching Number" name="search" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </form>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select Algorithm</mat-label>
+        <mat-select [disabled]="running===true" [(value)]="selected">
+          <mat-option value="binary">Binary Search</mat-option>
+          <mat-option value="linear">Linear Search</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      Speed:
+      <br>
+      slow
+      <mat-slider min="-500" max="0" step="10" value="1" (change)="change_time($event) "></mat-slider>
+      fast
+      <br>
+      <label>Array Size:</label>
+      <mat-slider [disabled]="running===true" min="20" max="200" step="20" value="1" (change)="change_array__size($event) "></mat-slider>
+      {{this.num_array_size}}
+      <br>
+      <button [disabled]="running===true" mat-flat-button color="primary" (click)="driver()">Start</button>
+      <button mat-flat-button color="warn" (click)="stop()">Stop</button>
+      <button [disabled]="running===true" mat-flat-button color="primary" (click)="sorrt()">Sort</button>
+
+    </div>
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+
+

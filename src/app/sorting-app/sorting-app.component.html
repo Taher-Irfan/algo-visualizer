@@ -1,0 +1,76 @@
+<!--<nav class="my-nav">-->
+
+<!--  <button mat-flat-button color="primary" (click)="sort()">bubble</button>-->
+<!--  <button mat-flat-button color="warn" (click)="mergesort()">merge</button>-->
+<!--  <button mat-flat-button color="accent" (click)="selectionsort()">selection</button>-->
+<!--  <button mat-flat-button color="warn" (click)="QuickSort()">QuickSort</button>-->
+<!--  <button mat-flat-button color="warn" (click)="reset()">Reset</button>-->
+<!--  <mat-slider min="0" max="250" step="10" value="1" (change)="change_time($event) "></mat-slider>{{timer}}ms-->
+<!--  <mat-slider min="20" max="100" step="5" value="1" (change)="change_data_size($event) "></mat-slider>{{this.datasize}}columns-->
+<!--</nav>-->
+<!--<div style="display: block">-->
+<!--  <canvas mdbChart-->
+<!--          [chartType]="chartType"-->
+<!--          [datasets]="chartDatasets"-->
+<!--          [labels]="chartLabels"-->
+<!--          [colors]="chartColors"-->
+<!--          [options]="chartOptions"-->
+<!--          [legend]="false"-->
+<!--          (chartHover)="chartHovered($event)"-->
+<!--  >-->
+<!--  </canvas>-->
+<!--</div>-->
+<mat-grid-list cols="4" style="margin-top: 5%">
+  <mat-grid-tile colspan="3" rowspan="2">
+    <div style="padding-top:10%; width:100%; height: 125%">
+      <canvas mdbChart
+              [chartType]="chartType"
+              [datasets]="chartDatasets"
+              [labels]="chartLabels"
+              [colors]="chartColors"
+              [options]="chartOptions"
+              [legend]="false"
+              (chartHover)="chartHovered($event)"
+      >
+      </canvas>
+      <hr>
+    </div>
+
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" style=" text-shadow: 0.5px 0.5px cyan">
+
+    <div class="mcl">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Algorithm</mat-label>
+        <mat-select [disabled]="running===true" [(value)]="selected">
+          <mat-option value="bubble">Bubble Sort</mat-option>
+          <mat-option value="selection">Selection Sort</mat-option>
+          <mat-option value="insertion">Insertion Sort</mat-option>
+          <mat-option value="merge">Merge Sort</mat-option>
+          <mat-option value="quick">Quick Sort</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      <br>
+      Speed:
+      <br>
+      slow
+      <mat-slider min="-250" max="0" step="10" value="1" (change)="change_time($event) "></mat-slider>
+      fast
+      <br>
+      Size:
+      <mat-slider [disabled]="running==true" min="20" max="100" step="5" value="1"
+                  (change)="change_data_size($event) "></mat-slider>
+      {{this.datasize}}
+      <br>
+      <br>
+
+      <br>
+      <button [disabled]="running==true" mat-flat-button color="primary" (click)="driver()">Start</button>
+      <button mat-flat-button color="warn" (click)="stop()">Stop</button>
+       <button  [disabled]="running==true"  mat-flat-button color="primary" (click)="reset()">Reset</button>
+
+
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
