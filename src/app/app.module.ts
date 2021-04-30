@@ -17,15 +17,17 @@ import {MatInputModule} from "@angular/material/input";
 import { FormsModule } from '@angular/forms';
 import {MatSelect, MatSelectModule} from "@angular/material/select";
 import {MatListModule} from "@angular/material/list";
+import { BinaryTreeComponent } from './binary-tree/binary-tree.component';
+import { KonvaModule } from 'ng2-konva';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     BubbleSortComponent,
     SortingAppComponent,
     SearchingComponent,
-
-  ],
+      BinaryTreeComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,7 +41,8 @@ import {MatListModule} from "@angular/material/list";
     MatInputModule,
     FormsModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    KonvaModule
 
 
   ],

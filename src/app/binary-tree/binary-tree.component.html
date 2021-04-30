@@ -1,0 +1,90 @@
+<ko-stage [config]="configStage">
+  <ko-layer>
+    <ko-shape *ngFor="let item of list" [config]="item">
+    </ko-shape>
+  </ko-layer>
+</ko-stage>
+
+<div *ngFor="let card of nodeList" class="card" [style.width]="card.width" [style.height]="card.height"
+  style="position: absolute;border-radius: 50%; background: {{card.background}};" [style.left]="card.left_padding"
+  [style.top]="card.top_padding">
+  <span *ngIf="card.visibility"
+    style="color:aliceblue; align-items: center; align-self: center;padding-top: 8px;">{{card.value}}</span>
+</div>
+<div *ngFor="let card of queryNodeList" class="card" [style.width]="card.width" [style.height]="card.height"
+  style="position: absolute;border-radius: 20%; background: {{card.background}};" [style.left]="card.left_padding"
+  [style.top]="card.top_padding">
+
+  <span *ngIf="card.value===-1"
+    style="color:aliceblue; align-items: center; align-self: center;padding-top: 8px;">MIN</span>
+  <span *ngIf="card.value===99999"
+    style="color:aliceblue; align-items: center; align-self: center;padding-top: 8px;">MAX</span>
+  <span *ngIf="card.value!=99999 && card.value != -1"
+    style="color:aliceblue; align-items: center; align-self: center;padding-top: 8px;">{{card.value}}</span>
+</div>
+<div style="text-shadow: 0.5px 0.5px cyan">
+  <div class="mcl" style="position: absolute;
+  left: 885px;
+  top: 100px;">
+    <form class="example-form">
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Select Tree Type</mat-label>
+        <mat-select width="60px" [(value)]="selected" (valueChange)="generate()">
+          <mat-option value="sumtree">Sum</mat-option>
+          <mat-option value="mintree">Min</mat-option>
+          <mat-option value="maxtree">Max</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width wid">
+        <input width="30px" [(ngModel)]='qL' matInput type="number" placeholder="From" name="search"
+          [ngModelOptions]="{standalone: true}">
+
+      </mat-form-field>
+      &nbsp; &nbsp; &nbsp;
+      <mat-form-field class="example-full-width wid">
+        <input width="30px" [(ngModel)]='qR' matInput type="number" placeholder="To" name="search"
+          [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+    <br>
+    Speed:
+    <br>
+    slow
+    <mat-slider min="-500" max="0" step="10" value="1" (change)="change_time($event) "></mat-slider>
+    fast
+    <br>
+    <button [disabled]="running===true" mat-flat-button color="primary" (click)="start()"> Start </button>
+    <br>
+    <br>
+    <h3>Point Update:</h3>
+    <mat-form-field class="example-full-width wid">
+      <input width="30px" [(ngModel)]='update_index' matInput type="number" placeholder="Index" name="index"
+        [ngModelOptions]="{standalone: true}">
+
+    </mat-form-field>
+    &nbsp; &nbsp; &nbsp;
+    <mat-form-field class="example-full-width wid">
+      <input width="30px" [(ngModel)]='update_value' matInput type="value" placeholder="Value" name="value"
+        [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <br>
+    <button [disabled]="running===true"  mat-flat-button color="primary" (click)="update()"> Update </button>
+    </form>
+
+  </div>
+
+
+</div>
+<div *ngFor="let card of inputArray" class="card" [style.width]="card.width" [style.height]="card.height"
+  style="position: absolute;border-radius: 20%; background: {{card.background}};" [style.left]="card.left_padding"
+  [style.top]="card.top_padding">
+  <span *ngIf="card.visibility"
+    style="color:aliceblue; align-items: center; align-self: center;padding-top: 8px;">{{card.value}}</span>
+</div>
+<div *ngFor="let card of inputArray" [style.width]="card.width" [style.height]="card.height"
+  style="position: absolute;border-radius: 20%;top: 630px" [style.left]="card.left_padding">
+  <span *ngIf="card.visibility"
+    style="color:crimson; align-items: center; align-self: center;padding-top: 8px;padding-left: 15px;">{{card.index}}</span>
+</div>
+<h2 style="position: absolute;top: 550px; left: 10px">Input Array:</h2>

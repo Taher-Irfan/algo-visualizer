@@ -1,0 +1,98 @@
+.card{
+    background-color: cyan;
+    border: solid #668E87;
+    border-radius: 7px;
+  }
+  .start_card{
+    background-color:#3f51b5;
+    border: solid #668E87;
+    border-radius: 7px;
+  }
+  
+  .end_card{
+    background-color: #ff2828;
+    border: solid #668E87;
+    border-radius: 7px;
+  }
+  .vis_card{
+    background-color: #bb1eff;
+    border: solid #668E87;
+    border-radius: 7px;
+  }
+  .queue_card{
+    background-color: #33ff11;
+    border: solid #668E87;
+    border-radius: 7px;
+  }
+  .my-nav{
+    background-color: #056c90;
+    color: white;
+    height: 20%;
+    margin-bottom: 0.5%;
+  }
+  .path{
+    background-color: #006bffbd;
+    border: solid #668E87;
+    border-radius: 7px;
+    text-shadow: 0.8px 0.8px #89c3ff;
+  }
+  .block{
+    background-color: #000000;
+    border: solid #668E87;
+    border-radius: 7px;
+  }
+  body {
+    margin: 40px;
+  }
+  
+  .mycard{
+    background: #3f51b5;
+  
+  }
+  .mcl{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .internalMatGrid{  min-width:90%;}
+  
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 80%;
+    margin-top: 10%;
+  }
+  
+  .example-full-width {
+    width: 80%;
+  }
+  button{
+    border-radius: 0px;
+  }
+  ::ng-deep .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
+    background-color: blueviolet;
+  }
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+
+.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 280px;
+}
+.wid{
+  width: 120px;
+}
